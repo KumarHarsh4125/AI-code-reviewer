@@ -1,6 +1,8 @@
-import { GoogleGenAI } from "@google/genai";
+const { GoogleGenAI } = require("@google/genai");
 
-const ai = new GoogleGenAI({ apiKey: process.env.GOOGLE_GEMINI_KEY });
+const ai = new GoogleGenAI({
+  apiKey: process.env.GOOGLE_GEMINI_KEY,
+});
 const model = ai.models;
 
 const systemInstruction = `
@@ -52,14 +54,14 @@ function fetchData() {
 async function fetchData() {
     try {
         const response = await fetch('/api/data');
-        if (!response.ok) throw new Error("HTTP error! Status: $\{response.status}");
+        if (!response.ok) throw new Error("HTTP error! Status: \${response.status}");
         return await response.json();
     } catch (error) {
         console.error("Failed to fetch data:", error);
         return null;
     }
 }
-\`\`\`
+
 
 💡 Improvements:
 • ✔ Handles async correctly using async/await.
@@ -81,4 +83,4 @@ async function generateContent(prompt) {
   return result.text;
 }
 
-export default generateContent;
+module.exports = generateContent;
